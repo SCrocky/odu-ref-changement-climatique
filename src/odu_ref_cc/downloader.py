@@ -14,6 +14,8 @@ API_SCHEMA = {
     },
 }
 
+DATA_FOLDER = "odu-data"
+
 
 def get_datasets():
     res = httpx.get("/".join([API_SCHEMA["url"], API_SCHEMA["endpoints"]["topic"]]))
@@ -56,7 +58,7 @@ def get_resources(
 
 
 def dl_resource(resource: dict, title: str):
-    filepath = f'data/{title}/{resource["title"]}'
+    filepath = f'{DATA_FOLDER}/{title}/{resource["title"]}'
     if not filepath.endswith(resource["format"]):
         filepath += f'.{resource["format"]}'
     if not filepath.endswith("csv.gz"):
