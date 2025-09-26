@@ -11,6 +11,8 @@ dependencies = [
     "httpx",
     "matplotlib",
     "click",
+    "geopandas",
+    "cartiflette"
 ]
 authors = [
   { name="SCrocky", email="" },

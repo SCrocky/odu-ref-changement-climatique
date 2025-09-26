@@ -17,7 +17,7 @@ API_SCHEMA = {
 DATA_FOLDER = "odu-data"
 
 
-def get_datasets():
+def get_datasets() -> dict[str, dict]:
     res = httpx.get("/".join([API_SCHEMA["url"], API_SCHEMA["endpoints"]["topic"]]))
     res.raise_for_status()
     return {
@@ -26,7 +26,7 @@ def get_datasets():
     }
 
 
-def get_dataset_info(dataset_id: str):
+def get_dataset_info(dataset_id: str) -> dict:
     endpoint = API_SCHEMA["endpoints"]["datasets"].format(dataset_id=dataset_id)
     res = httpx.get("/".join([API_SCHEMA["url"], endpoint]))
     res.raise_for_status()
@@ -36,7 +36,7 @@ def get_dataset_info(dataset_id: str):
 def get_resources(
     dataset_id: None | str = None,
     **extra_params,
-):
+) -> list[dict]:
     client = httpx.Client()
     url = API_SCHEMA["url"]
     endpoint = API_SCHEMA["endpoints"]["resources"].format(dataset_id=dataset_id)
